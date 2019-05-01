@@ -1,12 +1,19 @@
 package main
 
-import "github.com/gorilla/mux"
+import (
+	"net/http"
+
+	"github.com/gorilla/mux"
+)
 
 func main() {
 
 	r := mux.NewRouter()
 
-	r.HanleFunc("/", HomeHandler)
+	r.HandleFunc("/", HomeHandler)
 	r.HandleFunc("/products", ProductsHandler)
+	r.HandleFunc("/articles", ArticlesHandler)
+
+	http.Handle("/", r)
 
 }
